@@ -1,3 +1,7 @@
 https://trello.com/b/72UV6PnM/wdd-330-block-sleep-outside
 Ilisapeci Kaboa
+<<<<<<< HEAD
 Miguel Arcos
+=======
+Miguel
+>>>>>>> 21f3feae3c2de6b090b9bd5ce7cc50f52bbc82a1
