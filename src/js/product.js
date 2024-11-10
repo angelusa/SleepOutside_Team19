@@ -1,18 +1,30 @@
-import { setLocalStorage } from "./utils.mjs";
+import { setLocalStorage, getLocalStorage } from "./utils.mjs";
 import ProductData from "./ProductData.mjs";
 
 const dataSource = new ProductData("tents");
 
 function addProductToCart(product) {
-  setLocalStorage("so-cart", product);
+  let cart = getLocalStorage("so-cart") || [];
+  if (!Array.isArray(cart)) {
+    cart = [];
+  }
+  cart.push(product);
+  setLocalStorage("so-cart", cart);
+  updateCartCount(); // Update the cart count after adding a product
 }
-// add to cart button event handler
+
 async function addToCartHandler(e) {
   const product = await dataSource.findProductById(e.target.dataset.id);
   addProductToCart(product);
 }
 
-// add listener to Add to Cart button
-document
-  .getElementById("addToCart")
-  .addEventListener("click", addToCartHandler);
+function updateCartCount() {
+  const cart = getLocalStorage("so-cart") || [];
+  const cartCountElement = document.querySelector(".cart-count");
+  if (cartCountElement) {
+    cartCountElement.textContent = cart.length;
+  }
+}
+
+document.getElementById("addToCart").addEventListener("click", addToCartHandler);
+updateCartCount(); // Ensure count is updated when page loads
