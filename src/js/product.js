@@ -4,28 +4,29 @@ import ProductData from "./ProductData.mjs";
 const dataSource = new ProductData("tents");
 
 function addProductToCart(product) {
-  // Intenta obtener el carrito actual de localStorage o usa un array vacío si no existe
-  let cart = getLocalStorage("so-cart") || [];
 
-  // Me aseguro que cart es un array
+  let cart = getLocalStorage("so-cart") || [];
   if (!Array.isArray(cart)) {
     cart = [];
   }
-
-  // Agrega el producto al carrito
   cart.push(product);
-
-  // Guarda el carrito actualizado en localStorage
   setLocalStorage("so-cart", cart);
+  updateCartCount(); // Update the cart count after adding a product
 }
 
-// Manejador para el botón "Add to Cart"
+
 async function addToCartHandler(e) {
   const product = await dataSource.findProductById(e.target.dataset.id);
   addProductToCart(product);
 }
 
+function updateCartCount() {
+  const cart = getLocalStorage("so-cart") || [];
+  const cartCountElement = document.querySelector(".cart-count");
+  if (cartCountElement) {
+    cartCountElement.textContent = cart.length;
+  }
+}
 // Agrega el evento "click" al botón "Add to Cart"
-document
-  .getElementById("addToCart")
-  .addEventListener("click", addToCartHandler);
+document.getElementById("addToCart").addEventListener("click", addToCartHandler);
+updateCartCount(); // Ensure count is updated when page loads
