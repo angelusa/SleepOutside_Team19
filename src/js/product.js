@@ -4,7 +4,6 @@ import ProductData from "./ProductData.mjs";
 const dataSource = new ProductData("tents");
 
 function addProductToCart(product) {
-
   let cart = getLocalStorage("so-cart") || [];
   if (!Array.isArray(cart)) {
     cart = [];
@@ -13,7 +12,6 @@ function addProductToCart(product) {
   setLocalStorage("so-cart", cart);
   updateCartCount(); // Update the cart count after adding a product
 }
-
 
 async function addToCartHandler(e) {
   const product = await dataSource.findProductById(e.target.dataset.id);
@@ -28,5 +26,7 @@ function updateCartCount() {
   }
 }
 // Agrega el evento "click" al botón "Add to Cart"
-document.getElementById("addToCart").addEventListener("click", addToCartHandler);
+document
+  .getElementById("addToCart")
+  .addEventListener("click", addToCartHandler);
 updateCartCount(); // Ensure count is updated when page loads
