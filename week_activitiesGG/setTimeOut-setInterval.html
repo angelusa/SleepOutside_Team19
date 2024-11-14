@@ -1,36 +1,37 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>setTimeout and setInterval</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1 id="countdown">10</h1>
     <button id="startButton">Start</button>
 
     <script>
-        const countdown = document.getElementById("countdown");
-        const btn = document.getElementById("startButton");
-        let counter = 10; // Tiempo inicial del contador en segundos
+      const countdown = document.getElementById('countdown');
+      const btn = document.getElementById('startButton');
+      let counter = 10; // Tiempo inicial del contador en segundos
 
-        btn.addEventListener("click", () => {
-            // Desactiva el botón para evitar múltiples intervalos
-            btn.disabled = true;
+      btn.addEventListener('click', () => {
+        // Desactiva el botón para evitar múltiples intervalos
+        btn.disabled = true;
 
-            // Inicia el intervalo y guarda la referencia en timerId
-            const timerId = setInterval(() => {
-                countdown.textContent = counter; // Actualiza el contenido del <h1>
-                console.log(`Counter: ${counter}`); // Muestra el valor en la consola
-                counter--;
+        // Inicia el intervalo y guarda la referencia en timerId
+        const timerId = setInterval(() => {
+          countdown.textContent = counter; // Actualiza el contenido del <h1>
+          console.log(`Counter: ${counter}`); // Muestra el valor en la consola
+          counter--;
 
-                if (counter < 0) { // Cuando el contador es menor que cero
-                    clearInterval(timerId); // Detiene el intervalo
-                    countdown.textContent = "Time's up!"; // Muestra el mensaje final
-                    btn.disabled = false; // Vuelve a habilitar el botón
-                }
-            }, 1000); // Intervalo de 1 segundo
-        });
+          if (counter < 0) {
+            // Cuando el contador es menor que cero
+            clearInterval(timerId); // Detiene el intervalo
+            countdown.textContent = "Time's up!"; // Muestra el mensaje final
+            btn.disabled = false; // Vuelve a habilitar el botón
+          }
+        }, 1000); // Intervalo de 1 segundo
+      });
     </script>
-</body>
+  </body>
 </html>
