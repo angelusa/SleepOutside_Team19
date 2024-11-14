@@ -1,6 +1,6 @@
 :root {
   --font-body: Arial, Helvetica, sans-serif;
-  --font-headline: Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  --font-headline: Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   /* colors */
   --primary-color: #f0a868;
   --secondary-color: #525b0f;
@@ -219,4 +219,17 @@ button {
 footer {
   font-size: var(--small-font);
   padding: 1em;
+}
+
+.cart-count {
+  background-color: red;
+  color: white;
+  font-size: 0.8em;
+  padding: 0.2em 0.5em;
+  border-radius: 50%;
+  position: absolute;
+  top: 15px; /* Adjusted to move it slightly lower */
+  right: 0;
+  transform: translate(50%, -50%);
+  z-index: 10; /* Ensure it's on top */
 }
