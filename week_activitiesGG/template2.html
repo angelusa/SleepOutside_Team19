@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <style>
+        body{
+            text-align: center;
+        }
+
+        #product-list{
+            display: flex;
+            flex-wrap: wrap; /* Permite que las tarjetas se acomoden en varias filas */
+            justify-content: center; /* Centra las tarjetas horizontalmente */
+            gap: 20px; /* Espacio entre las tarjetas */
+            padding: 20px; /* Espacio interno alrededor de las tarjetas */
+        }
+
+        .product {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            text-align: center;
+        }
+        .product img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Our Products</h1>
+
+    <!-- Contenedor donde los productos serán insertados -->
+    <section id="product-list"></section>
+
+    <!-- Template para la tarjeta del producto -->
+    <template id="product-template">
+        <div class="product">
+            <img src="" alt="Product image">
+            <h2 class="product-name"></h2>
+            <p class="product-price"></p>
+            <button class="buy-btn">Buy Now</button>
+        </div>
+    </template>
+
+    <script>
+        // Datos de ejemplo de productos
+        const products = [
+            {
+                name: "Camera",
+                price: "$420",
+                image: "https://images.pexels.com/photos/28993692/pexels-photo-28993692/free-photo-of-camaras-antiguas-y-modernas-en-exposicion.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            },
+            {
+                name: "Bike",
+                price: "$120",
+                image: "https://images.pexels.com/photos/1149601/pexels-photo-1149601.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            },
+            {
+                name: "Piano",
+                price: "$700",
+                image: "https://images.pexels.com/photos/1021142/pexels-photo-1021142.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            }
+        ];
+
+        // Obtener el contenedor donde se agregarán los productos
+        const productList = document.getElementById("product-list");
+
+        // Obtener el template de producto
+        const productTemplate = document.getElementById("product-template");
+
+        // Iterar sobre los productos y agregar cada uno al DOM
+        products.forEach(product => {
+            // Clonar el contenido del template
+            const productClone = productTemplate.content.cloneNode(true);
+
+            // Poblar el clon con los datos del producto
+            productClone.querySelector("img").src = product.image;
+            productClone.querySelector(".product-name").textContent = product.name;
+            productClone.querySelector(".product-price").textContent = product.price;
+
+            // Insertar el clon en el contenedor
+            productList.appendChild(productClone);
+        });
+    </script>
+</body>
+</html>
