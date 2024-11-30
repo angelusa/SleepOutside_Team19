@@ -8,7 +8,7 @@ function convertToJson(res) {
   }
 }
 
-export default class ProductData {
+export default class ExternalServices {
   // Elimina el constructor, ya que no necesitamos la categoría como propiedad
   async getData(category) {
     try {

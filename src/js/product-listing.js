@@ -1,12 +1,11 @@
-import ProductData from './ProductData.mjs';
-import ProductList from './ProductList.mjs';
+import { loadHeaderFooter, getParam } from "./utils.mjs";
+import ExternalServices from "./ExternalServices.mjs";
+import ProductList from "./ProductList.mjs";
 
-// Fuente de datos para los productos
-const dataSource = new ProductData('tents');
+loadHeaderFooter();
+const category = getParam("category");
+const dataSource = new ExternalServices();
+const element = document.querySelector(".product-list");
+const listing = new ProductList(category, dataSource, element);
 
-// Selección del contenedor para la lista de productos
-const element = document.querySelector('.product-list');
-
-// Creación e inicialización de la lista de productos
-const listing = new ProductList('Tents', dataSource, element);
 listing.init();
