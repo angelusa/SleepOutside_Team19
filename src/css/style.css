@@ -202,6 +202,47 @@ button {
   grid-column: 3;
 }
 
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Cuatro columnas */
+  gap: 20px;
+  padding: 2em;
+}
+
+.category-box {
+  text-align: center;
+  border: 1px solid var(--light-grey);
+  padding: 1em;
+  background-color: #f9f9f9;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category-box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.category-box img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 1em;
+}
+
+.category-box h2 {
+  font-size: var(--large-font);
+  color: var(--primary-color);
+}
+
+
+@media screen and (max-width: 500px) {
+  .category-grid {
+    grid-template-columns: 1fr; /* 1 columna en pantallas muy pequeñas */
+  }
+}
+
+
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
