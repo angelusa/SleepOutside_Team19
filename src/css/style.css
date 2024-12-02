@@ -233,3 +233,20 @@ footer {
   transform: translate(50%, -50%);
   z-index: 10; /* Ensure it's on top */
 }
+
+/*Cart footer*/
+.cart-footer {
+  margin-top: 20px;
+  padding: 15px;
+  border-top: 1px solid #ccc;
+  text-align: right;
+}
+
+.cart-total {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.hide {
+  display: none;
+}
