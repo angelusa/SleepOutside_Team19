@@ -1,4 +1,9 @@
-import { getLocalStorage } from './utils.mjs';
+import {
+  setLocalStorage,
+  getLocalStorage,
+  alertMessage,
+  removeAllAlerts,
+} from './utils.mjs';
 import ExternalServices from './ExternalServices.mjs';
 
 const services = new ExternalServices();
@@ -42,7 +47,7 @@ export default class CheckoutProcess {
   }
   calculateItemSummary() {
     const summaryElement = document.querySelector(
-      this.outputSelector + '#cartTotal'
+      this.outputSelector + ' #cartTotal'
     );
     const itemNumElement = document.querySelector(
       this.outputSelector + ' #num-items'
@@ -64,7 +69,7 @@ export default class CheckoutProcess {
     this.displayOrderTotals();
   }
   displayOrderTotals() {
-    const shipping = document.querySelector(this.outputSelector + ' #shipping');
+    const shipping = document.querySelector(this.outputSelector + '#shipping');
     const tax = document.querySelector(this.outputSelector + ' #tax');
     const orderTotal = document.querySelector(
       this.outputSelector + ' #orderTotal'
@@ -87,7 +92,15 @@ export default class CheckoutProcess {
     try {
       const res = await services.checkout(json);
       console.log(res);
+      setLocalStorage('so-cart', []);
+      location.assign('/checkout/success.html');
     } catch (err) {
+      // get rid of any preexisting alerts.
+      removeAllAlerts();
+      for (let message in err.message) {
+        alertMessage(err.message[message]);
+      }
+
       console.log(err);
     }
   }
