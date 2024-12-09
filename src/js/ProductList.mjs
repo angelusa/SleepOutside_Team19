@@ -1,7 +1,13 @@
 import { renderListWithTemplate } from './utils.mjs';
+import { calculateDiscount } from './utils.mjs';
 
 function productCardTemplate(product) {
+  //Calculate the discount percentage
+  const discount = calculateDiscount(product.FinalPrice, product.SuggestedRetailPrice);
+  //Add a discount badge if there's a discount
+  const discountBadge = discount > 0 ? `<div class="discount-badge">${discount}% OFF</div>` : '';
   return `<li class="product-card">
+  ${discountBadge}
   <a href="product_pages/index.html?product=${product.Id}">
   <img
     src="${product.Image}"

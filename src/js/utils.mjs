@@ -1,3 +1,4 @@
+
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
@@ -99,3 +100,10 @@ export function removeAllAlerts() {
   alerts.forEach((alert) => document.querySelector('main').removeChild(alert));
 }
 
+export function calculateDiscount(finalPrice, suggestedRetailPrice) {
+  if (finalPrice < suggestedRetailPrice) {
+      const discount = ((suggestedRetailPrice - finalPrice) / suggestedRetailPrice) * 100;
+      return Math.round(discount);
+  }
+  return 0;
+}
