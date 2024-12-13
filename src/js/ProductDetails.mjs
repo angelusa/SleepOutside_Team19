@@ -19,8 +19,15 @@ export default class ProducDetails {
           .addEventListener('click', this.addToCart.bind(this));
     }
 
-    addToCart(product) {
-        setLocalStorage('so-cart', this.product);
+    addToCart() {
+      let cartContents = getLocalStorage("so-cart");
+      //check to see if there was anything there
+      if (!cartContents) {
+        cartContents = [];
+      }
+      // then add the current product to the list
+      cartContents.push(this.product);
+      setLocalStorage("so-cart", cartContents);
     }
 
     renderProductDetails(selector) {
