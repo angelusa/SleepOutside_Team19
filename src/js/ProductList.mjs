@@ -19,14 +19,12 @@ export default class ProductList {
     }
 
     async init() {
-        const list = await this.dataSource.getData();
+        const list = await this.dataSource.getData(this.category);
         this.renderList(list);
+        document.querySelector(".title").innerHTML = this.category;
     }
 
     renderList(list) {
-      //Stretch #2 - Remove extra products
-      let arr = ['880RR', '985RF', '985PR', '344YJ']
-      const res = list.filter( x => arr.includes(x.Id));
-      renderListWithTemplate(productCardTemplate, this.listElement, res);
+      renderListWithTemplate(productCardTemplate, this.listElement, list);
     }
 }
